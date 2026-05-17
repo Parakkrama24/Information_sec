@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure V2I Communication - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Secure V2I Communication</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#project-details" class="nav-link active">Project Details</a></li>
+                <li><a href="#protocol-diagram" class="nav-link">Protocol Diagram</a></li>
+                <li><a href="#folder-structure" class="nav-link">Folder Structure</a></li>
+                <li><a href="#testing" class="nav-link">Testing & Logs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Project Details Page -->
+        <section id="project-details" class="page active">
+            <h1>Project Details</h1>
+
+            <div class="card">
+                <h2>Overview</h2>
+                <p>Secure Vehicle-to-Infrastructure (V2I) Communication protocol implementing end-to-end encryption and authentication for vehicle telemetry transmission to edge servers.</p>
+            </div>
+
+            <div class="card">
+                <h2>Security Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🔐</div>
+                        <h3>Authentication</h3>
+                        <p>RSA-based challenge-response mechanism to verify vehicle identity</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔑</div>
+                        <h3>Key Exchange</h3>
+                        <p>Secure AES session key establishment using RSA-2048 encryption</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Confidentiality</h3>
+                        <p>AES-256-GCM encryption for telemetry data protection</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✅</div>
+                        <h3>Integrity</h3>
+                        <p>Digital signatures ensure data hasn't been tampered with</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Protocol Phases</h2>
+                <div class="protocol-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-number">1</div>
+                        <div class="timeline-content">
+                            <h3>Connection Establishment</h3>
+                            <p>Vehicle connects to Edge Server via TCP socket</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">2</div>
+                        <div class="timeline-content">
+                            <h3>Authentication Challenge</h3>
+                            <p>Server sends 32-byte cryptographic nonce to vehicle</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">3</div>
+                        <div class="timeline-content">
+                            <h3>Challenge Response</h3>
+                            <p>Vehicle signs challenge with private RSA key and returns signature</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">4</div>
+                        <div class="timeline-content">
+                            <h3>Session Key Exchange</h3>
+                            <p>Vehicle generates AES-256 key and encrypts with server's public RSA key</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">5</div>
+                        <div class="timeline-content">
+                            <h3>Secure Transmission</h3>
+                            <p>Vehicle encrypts telemetry with AES-GCM, signs payload, and transmits</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Technical Specifications</h2>
+                <table class="specs-table">
+                    <tr>
+                        <th>Component</th>
+                        <th>Specification</th>
+                    </tr>
+                    <tr>
+                        <td>Asymmetric Encryption</td>
+                        <td>RSA-2048</td>
+                    </tr>
+                    <tr>
+                        <td>Symmetric Encryption</td>
+                        <td>AES-256-GCM</td>
+                    </tr>
+                    <tr>
+                        <td>Hash Algorithm</td>
+                        <td>SHA-256</td>
+                    </tr>
+                    <tr>
+                        <td>Signature Scheme</td>
+                        <td>RSA-PSS (PKCS#1 v2.1)</td>
+                    </tr>
+                    <tr>
+                        <td>Communication Protocol</td>
+                        <td>TCP/IP</td>
+                    </tr>
+                    <tr>
+                        <td>Port</td>
+                        <td>65432</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2>Vehicle Telemetry Data</h2>
+                <pre class="code-block">{
+    "vehicle_id": "V-4848",
+    "position": {
+        "x": 42.3601,
+        "y": -71.0589
+    },
+    "velocity": 65.5,
+    "qos_level": 2,
+    "privacy_demand_psi": 0.85
+}</pre>
+            </div>
+        </section>
+
+        <!-- Protocol Diagram Page -->
+        <section id="protocol-diagram" class="page">
+            <h1>Interactive Protocol Diagram</h1>
+
+            <div class="card">
+                <h2>Authentication Protocol Flow</h2>
+                <p style="color: #d1d5db; margin-bottom: 1.5rem;">
+                    This interactive diagram demonstrates the complete authentication and secure communication protocol between the Vehicle and Edge Server.
+                    Click "Start Animation" to see the step-by-step flow.
+                </p>
+
+                <div class="diagram-controls">
+                    <button id="start-animation-btn" class="btn btn-primary">▶️ Start Animation</button>
+                    <button id="reset-animation-btn" class="btn btn-secondary">🔄 Reset</button>
+                    <button id="step-next-btn" class="btn btn-success">⏭️ Next Step</button>
+                </div>
+
+                <div id="protocol-diagram-container" class="diagram-container">
+                    <!-- SVG Diagram -->
+                    <svg id="protocol-svg" viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background -->
+                        <rect width="800" height="900" fill="#1f2937" />
+
+                        <!-- Vehicle (Left) -->
+                        <g id="vehicle-node">
+                            <rect x="50" y="50" width="200" height="100" rx="10" fill="#2563eb" stroke="#60a5fa" stroke-width="2"/>
+                            <text x="150" y="90" text-anchor="middle" fill="white" font-size="18" font-weight="bold">🚗 Vehicle</text>
+                            <text x="150" y="115" text-anchor="middle" fill="#d1d5db" font-size="12">Client</text>
+                        </g>
+
+                        <!-- Edge Server (Right) -->
+                        <g id="server-node">
+                            <rect x="550" y="50" width="200" height="100" rx="10" fill="#7c3aed" stroke="#a78bfa" stroke-width="2"/>
+                            <text x="650" y="90" text-anchor="middle" fill="white" font-size="18" font-weight="bold">🖥️ Edge Server</text>
+                            <text x="650" y="115" text-anchor="middle" fill="#d1d5db" font-size="12">Infrastructure</text>
+                        </g>
+
+                        <!-- Step 1: Connection -->
+                        <g id="step1" class="protocol-step" opacity="0">
+                            <line x1="250" y1="100" x2="550" y2="100" stroke="#10b981" stroke-width="3" marker-end="url(#arrowgreen)"/>
+                            <rect x="320" y="70" width="160" height="30" rx="5" fill="#374151"/>
+                            <text x="400" y="92" text-anchor="middle" fill="#10b981" font-size="14" font-weight="bold">1. TCP Connection</text>
+                        </g>
+
+                        <!-- Step 2: Challenge Sent -->
+                        <g id="step2" class="protocol-step" opacity="0">
+                            <line x1="550" y1="200" x2="250" y2="200" stroke="#f59e0b" stroke-width="3" marker-end="url(#arroworange)"/>
+                            <rect x="300" y="170" width="200" height="30" rx="5" fill="#374151"/>
+                            <text x="400" y="192" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="bold">2. Challenge (Nonce)</text>
+                        </g>
+
+                        <!-- Step 3: Sign Challenge -->
+                        <g id="step3" class="protocol-step" opacity="0">
+                            <rect x="30" y="250" width="240" height="80" rx="8" fill="#374151" stroke="#60a5fa" stroke-width="2"/>
+                            <text x="150" y="280" text-anchor="middle" fill="#60a5fa" font-size="14" font-weight="bold">3. Sign Challenge</text>
+                            <text x="150" y="305" text-anchor="middle" fill="#d1d5db" font-size="12">RSA Private Key</text>
+                            <text x="150" y="323" text-anchor="middle" fill="#a5f3fc" font-size="11">Signature = Sign(Challenge)</text>
+                        </g>
+
+                        <!-- Step 4: Signature Response -->
+                        <g id="step4" class="protocol-step" opacity="0">
+                            <line x1="250" y1="380" x2="550" y2="380" stroke="#a78bfa" stroke-width="3" marker-end="url(#arrowpurple)"/>
+                            <rect x="280" y="350" width="240" height="30" rx="5" fill="#374151"/>
+                            <text x="400" y="372" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="bold">4. Challenge Signature</text>
+                        </g>
+
+                        <!-- Step 5: Verify Signature -->
+                        <g id="step5" class="protocol-step" opacity="0">
+                            <rect x="530" y="420" width="240" height="80" rx="8" fill="#374151" stroke="#a78bfa" stroke-width="2"/>
+                            <text x="650" y="450" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="bold">5. Verify Signature</text>
+                            <text x="650" y="475" text-anchor="middle" fill="#d1d5db" font-size="12">RSA Public Key</text>
+                            <text x="650" y="493" text-anchor="middle" fill="#10b981" font-size="11">✓ Authentication OK</text>
+                        </g>
+
+                        <!-- Step 6: Generate AES Key -->
+                        <g id="step6" class="protocol-step" opacity="0">
+                            <rect x="30" y="540" width="240" height="80" rx="8" fill="#374151" stroke="#60a5fa" stroke-width="2"/>
+                            <text x="150" y="570" text-anchor="middle" fill="#60a5fa" font-size="14" font-weight="bold">6. Generate AES Key</text>
+                            <text x="150" y="595" text-anchor="middle" fill="#d1d5db" font-size="12">256-bit Session Key</text>
+                            <text x="150" y="613" text-anchor="middle" fill="#a5f3fc" font-size="11">Encrypt with Server PubKey</text>
+                        </g>
+
+                        <!-- Step 7: Send Encrypted Session Key -->
+                        <g id="step7" class="protocol-step" opacity="0">
+                            <line x1="250" y1="670" x2="550" y2="670" stroke="#ec4899" stroke-width="3" marker-end="url(#arrowpink)"/>
+                            <rect x="260" y="640" width="280" height="30" rx="5" fill="#374151"/>
+                            <text x="400" y="662" text-anchor="middle" fill="#ec4899" font-size="14" font-weight="bold">7. Encrypted AES Session Key</text>
+                        </g>
+
+                        <!-- Step 8: Decrypt Session Key -->
+                        <g id="step8" class="protocol-step" opacity="0">
+                            <rect x="530" y="710" width="240" height="80" rx="8" fill="#374151" stroke="#a78bfa" stroke-width="2"/>
+                            <text x="650" y="740" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="bold">8. Decrypt AES Key</text>
+                            <text x="650" y="765" text-anchor="middle" fill="#d1d5db" font-size="12">RSA Private Key</text>
+                            <text x="650" y="783" text-anchor="middle" fill="#10b981" font-size="11">✓ Session Key Retrieved</text>
+                        </g>
+
+                        <!-- Step 9: Encrypt & Sign Telemetry -->
+                        <g id="step9" class="protocol-step" opacity="0">
+                            <rect x="30" y="830" width="240" height="60" rx="8" fill="#374151" stroke="#60a5fa" stroke-width="2"/>
+                            <text x="150" y="855" text-anchor="middle" fill="#60a5fa" font-size="13" font-weight="bold">9. Encrypt Telemetry</text>
+                            <text x="150" y="875" text-anchor="middle" fill="#d1d5db" font-size="11">AES-GCM + Sign with RSA</text>
+                        </g>
+
+                        <!-- Step 10: Secure Data Transfer -->
+                        <g id="step10" class="protocol-step" opacity="0">
+                            <line x1="250" y1="750" x2="550" y2="750" stroke="#10b981" stroke-width="4" marker-end="url(#arrowgreen)"/>
+                            <rect x="270" y="720" width="260" height="30" rx="5" fill="#374151"/>
+                            <text x="400" y="742" text-anchor="middle" fill="#10b981" font-size="14" font-weight="bold">10. 🔒 Secure Telemetry Data</text>
+                        </g>
+
+                        <!-- Arrow Markers -->
+                        <defs>
+                            <marker id="arrowgreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#10b981"/>
+                            </marker>
+                            <marker id="arroworange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+                            </marker>
+                            <marker id="arrowpurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#a78bfa"/>
+                            </marker>
+                            <marker id="arrowpink" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#ec4899"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+
+                <div id="step-explanation" class="step-explanation">
+                    <h3>Protocol Step Explanation</h3>
+                    <p id="step-text">Click "Start Animation" to begin the protocol demonstration.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Protocol Security Guarantees</h2>
+                <div class="security-grid">
+                    <div class="security-item">
+                        <div class="security-icon">🔐</div>
+                        <h3>Mutual Authentication</h3>
+                        <p>Vehicle proves identity through RSA digital signature of server's challenge, ensuring only authorized vehicles can connect.</p>
+                    </div>
+                    <div class="security-item">
+                        <div class="security-icon">🔑</div>
+                        <h3>Secure Key Exchange</h3>
+                        <p>AES session key is securely transmitted using RSA-2048 encryption, preventing eavesdropping and man-in-the-middle attacks.</p>
+                    </div>
+                    <div class="security-item">
+                        <div class="security-icon">🛡️</div>
+                        <h3>Data Confidentiality</h3>
+                        <p>All telemetry data is encrypted with AES-256-GCM, ensuring that only the intended recipient can read the information.</p>
+                    </div>
+                    <div class="security-item">
+                        <div class="security-icon">✅</div>
+                        <h3>Message Integrity</h3>
+                        <p>RSA digital signatures and AES-GCM authentication tags ensure data hasn't been tampered with during transmission.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Cryptographic Primitives Used</h2>
+                <div class="crypto-table">
+                    <table class="specs-table">
+                        <tr>
+                            <th>Operation</th>
+                            <th>Algorithm</th>
+                            <th>Purpose</th>
+                        </tr>
+                        <tr>
+                            <td>Authentication</td>
+                            <td>RSA-PSS (2048-bit)</td>
+                            <td>Digital signature for challenge-response</td>
+                        </tr>
+                        <tr>
+                            <td>Key Exchange</td>
+                            <td>RSA-OAEP (2048-bit)</td>
+                            <td>Encrypt AES session key</td>
+                        </tr>
+                        <tr>
+                            <td>Data Encryption</td>
+                            <td>AES-256-GCM</td>
+                            <td>Symmetric encryption with authentication</td>
+                        </tr>
+                        <tr>
+                            <td>Hashing</td>
+                            <td>SHA-256</td>
+                            <td>Used in RSA padding and signatures</td>
+                        </tr>
+                        <tr>
+                            <td>Random Generation</td>
+                            <td>OS Cryptographic RNG</td>
+                            <td>Nonces, session keys, and IVs</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Folder Structure Page -->
+        <section id="folder-structure" class="page">
+            <h1>Project Folder Structure</h1>
+
+            <div class="card">
+                <h2>Directory Tree</h2>
+                <div id="folder-tree" class="folder-tree">
+                    <div class="loading">Loading folder structure...</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>File Descriptions</h2>
+                <div class="file-descriptions">
+                    <div class="file-item">
+                        <div class="file-icon">🔑</div>
+                        <div class="file-info">
+                            <h3>keys_setup.py</h3>
+                            <p>Generates RSA-2048 key pairs for both vehicle and edge server. Creates PEM-encoded public and private keys used for authentication and encryption.</p>
+                        </div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">🖥️</div>
+                        <div class="file-info">
+                            <h3>edge_server.py</h3>
+                            <p>TCP server implementation that handles vehicle connections, authentication, key exchange, and secure telemetry reception. Acts as the infrastructure endpoint.</p>
+                        </div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">🚗</div>
+                        <div class="file-info">
+                            <h3>vehicle.py</h3>
+                            <p>Client application simulating a vehicle. Performs authentication, generates session keys, and transmits encrypted telemetry data to the edge server.</p>
+                        </div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">🧪</div>
+                        <div class="file-info">
+                            <h3>test_system.py</h3>
+                            <p>Automated test script that starts the edge server and vehicle client, executes the full protocol, and displays results from both components.</p>
+                        </div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📦</div>
+                        <div class="file-info">
+                            <h3>requirements.txt</h3>
+                            <p>Python dependencies list. Contains the cryptography library for RSA and AES operations.</p>
+                        </div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📝</div>
+                        <div class="file-info">
+                            <h3>*.pem files</h3>
+                            <p>RSA key files generated by keys_setup.py. Includes private and public keys for both vehicle and edge server.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testing & Logs Page -->
+        <section id="testing" class="page">
+            <h1>Testing & Logs</h1>
+
+            <div class="card">
+                <h2>System Status</h2>
+                <div class="status-grid">
+                    <div class="status-card" id="edge-status">
+                        <div class="status-indicator status-inactive"></div>
+                        <h3>Edge Server</h3>
+                        <p>Inactive</p>
+                    </div>
+                    <div class="status-card" id="vehicle-status">
+                        <div class="status-indicator status-inactive"></div>
+                        <h3>Vehicle Client</h3>
+                        <p>Ready</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Test Controls</h2>
+                <p style="color: #d1d5db; margin-bottom: 1rem;">Click the button below to run a complete end-to-end test of the secure V2I communication system.</p>
+                <div class="button-group">
+                    <button id="run-full-test-btn" class="btn btn-success">🚀 Run Full System Test</button>
+                    <button id="clear-logs-btn" class="btn btn-warning">🗑️ Clear Logs</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Edge Server Logs</h2>
+                <div id="server-logs" class="log-container">
+                    <div class="log-placeholder">No logs available. Start the edge server to see logs.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Vehicle Client Logs</h2>
+                <div id="vehicle-logs" class="log-container">
+                    <div class="log-placeholder">No logs available. Run the vehicle client to see logs.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Received Telemetry Data</h2>
+                <div id="telemetry-data" class="telemetry-container">
+                    <div class="log-placeholder">No telemetry received yet.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
